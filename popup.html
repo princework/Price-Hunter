@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PriceHunter AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<div class="scanline"></div>
+<div class="bg-grid"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="brand">
+    <div class="brand-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+        <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M11 8v6M8 11h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div>
+      <div class="brand-name">PriceHunter <span class="ai-badge">AI</span></div>
+      <div class="brand-sub">Smart Price Intelligence</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="pulse-dot" id="statusDot"></div>
+    <button class="settings-btn" id="settingsBtn" title="API Settings">⚙</button>
+  </div>
+</header>
+
+<!-- API KEY PANEL (collapsible) -->
+<div class="api-panel hidden" id="apiPanel">
+  <div class="api-panel-inner">
+    <div class="field-label">ANTHROPIC API KEY</div>
+    <div class="input-row">
+      <input type="password" id="apiKeyInput" placeholder="sk-ant-••••••••"/>
+    </div>
+    <div class="field-label" style="margin-top:10px">SERPAPI KEY <span class="live-tag">LIVE PRICES</span></div>
+    <div class="input-row">
+      <input type="password" id="serpKeyInput" placeholder="your-serpapi-key"/>
+    </div>
+    <button class="btn-save-full" id="saveKeyBtn">💾 Save All Keys</button>
+    <div class="api-note">Keys stored locally in your browser only.</div>
+  </div>
+</div>
+
+<!-- PRODUCT DETECTED -->
+<div id="mainView">
+
+  <!-- NOT ON PRODUCT PAGE -->
+  <div class="empty-state" id="emptyState">
+    <div class="empty-icon">🛍️</div>
+    <div class="empty-title">No product detected</div>
+    <div class="empty-sub">Visit a product page on Amazon, Flipkart, Myntra, Croma, or Snapdeal</div>
+    <div class="supported-sites">
+      <span>amazon</span><span>flipkart</span><span>myntra</span><span>croma</span><span>snapdeal</span>
+    </div>
+  </div>
+
+  <!-- PRODUCT FOUND -->
+  <div class="hidden" id="productView">
+
+    <!-- PRODUCT CARD -->
+    <div class="product-card" id="productCard">
+      <div class="product-name" id="productName">Loading...</div>
+      <div class="current-price-row">
+        <div>
+          <div class="price-label">CURRENT PRICE</div>
+          <div class="current-price" id="currentPrice">—</div>
+        </div>
+        <div class="price-badges">
+          <div class="badge badge-site" id="currentSite">—</div>
+          <div class="badge" id="dealBadge"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab active" data-tab="compare">Compare</button>
+      <button class="tab" data-tab="history">History</button>
+      <button class="tab" data-tab="ai">AI Analysis</button>
+    </div>
+
+    <!-- TAB: COMPARE -->
+    <div class="tab-content active" id="tab-compare">
+      <div class="compare-loading hidden" id="compareLoading">
+        <div class="loading-bar"><div class="loading-fill"></div></div>
+        <div class="loading-text">Hunting prices across stores…</div>
+      </div>
+      <div id="compareResults"></div>
+      <button class="btn-hunt" id="huntBtn">
+        <span>🔍 Hunt Prices</span>
+      </button>
+    </div>
+
+    <!-- TAB: HISTORY -->
+    <div class="tab-content hidden" id="tab-history">
+      <div class="chart-wrap">
+        <canvas id="priceChart"></canvas>
+      </div>
+      <div class="history-stats" id="historyStats"></div>
+    </div>
+
+    <!-- TAB: AI -->
+    <div class="tab-content hidden" id="tab-ai">
+      <button class="btn-ai" id="aiAnalyzeBtn">
+        <span class="ai-icon">✦</span> Get AI Deal Analysis
+      </button>
+      <div class="ai-output hidden" id="aiOutput"></div>
+      <div class="ai-loading hidden" id="aiLoading">
+        <div class="ai-thinking">
+          <span>✦</span> AI is thinking
+          <span class="dots"><span>.</span><span>.</span><span>.</span></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span id="footerText">PriceHunter AI v1.0</span>
+  <button class="btn-ghost" id="refreshBtn">↻ Refresh</button>
+</footer>
+
+<script src="popup.js"></script>
+</body>
+</html>
