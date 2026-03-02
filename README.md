@@ -59,3 +59,8 @@ CLAUDE_API_KEY = "YOUR_CLAUDE_API_KEY"
 ## 👨‍💻 Author
 Your Name  
 GitHub: https://github.com/yourusername
+
+## 👨‍💻 screenshot
+<img width="1917" height="787" alt="Screenshot 2026-03-03 022052" src="https://github.com/user-attachments/assets/823132b4-4072-462a-aa11-33a472cf97dc" />
+<img width="1839" height="679" alt="Screenshot 2026-03-03 022022" src="https://github.com/user-attachments/assets/914bf179-930e-458a-8940-576617c77a96" />
+<img width="1799" height="843" alt="Screenshot 2026-03-03 021915" src="https://github.com/user-attachments/assets/19562580-fc27-4de2-b900-145f704a6800" />
